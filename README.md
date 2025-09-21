@@ -35,11 +35,11 @@ chord = \chordmode {
     }
 
 song = {
-  \relative c {
+  \relative c, {
     \numericTimeSignature
     \time 4/4
     \key c \major
-    a,4 a a a |
+    a4 a a a |
   }
 }
 

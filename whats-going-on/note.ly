@@ -1,4 +1,4 @@
-\version "2.24.0"
+\version "2.26.0"
 
 \header {
   title = "What's Going On"
@@ -6,17 +6,11 @@
   composer = "James Jamerson"
 }
 
-#(set-global-staff-size 23)
-
 \paper {
   indent = 0\mm
-  #(define fonts
-     (set-global-fonts
-      #:music "lv-goldenage"
-      #:roman "GoldenAge"
-      #:sans "GoldenAge"
-      #:factor (/ staff-height pt 20)
-      ))
+  property-defaults.fonts.music = "lv-goldenage"
+  property-defaults.fonts.serif = "GoldenAge"
+  property-defaults.fonts.sans = "GoldenAge"
 }
 
 chord = \chordmode {
@@ -29,8 +23,7 @@ song = {
     \time 4/4
     \key e \major
     e,4.. b'16~ b8 cis b cis | e,4.. b'16~ b8 cis e cis | 
-    e,4.. b'16~ b8 cis b cis | e,4.. gis16~ gis cis8 c16 b8 cis \section 
-
+    e,4.. b'16~ b8 cis b cis | e,4.. gis16~ gis cis8 c16 b8 cis \section
   }
 }
 
@@ -40,6 +33,7 @@ staff = {
       \chord
     }
     \new Staff {
+      % \override Score.SpacingSpanner.spacing-increment = 2.5
       \clef "bass_8"
       \song
     }

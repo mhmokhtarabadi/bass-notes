@@ -25,6 +25,7 @@ This is a place to keep my bass notes.
 }
 
 \paper {
+  indent = 0\mm
   property-defaults.fonts.music = "lv-goldenage"
   property-defaults.fonts.serif = "GoldenAge"
   property-defaults.fonts.sans = "GoldenAge"
@@ -35,7 +36,7 @@ chord = \chordmode {
     }
 
 song = {
-  \relative c {
+  \relative c, {
     \numericTimeSignature
     \time 4/4
     \key c \major
@@ -50,7 +51,7 @@ staff = {
     }
     \new Staff {
       \override Score.SpacingSpanner.spacing-increment = 2.5
-      \clef "bass"
+      \clef "bass_8"
       \song
     }
     \new TabStaff \with {

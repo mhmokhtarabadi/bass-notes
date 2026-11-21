@@ -4,12 +4,19 @@ This is a place to keep my bass notes.
 
 ## Make things work
 
-_TODO:_ Explain how to setup LilyPond in VSCode
+### MAC
+
+1. Download the binary file from here: https://lilypond.org/download.html
+2. Unzip the file and place it in `~/tools`
+3. Run `echo 'export PATH="$HOME/tools/lilypond-2.26.0/bin:$PATH"' >> ~/.zshrc` to add lilypond to path
+4. Download Golder Age fonts from here: https://github.com/OpenLilyPondFonts/lv-goldenage
+5. Install all the fonts inside the [otf](https://github.com/OpenLilyPondFonts/lv-goldenage/tree/master/otf) and [supplementary-fonts](https://github.com/OpenLilyPondFonts/lv-goldenage/tree/master/supplementary-fonts) folders.
+6. Copy all the fonts (`.otf`) to this path: `~/tools/lilypond-2.26.0/share/lilypond/2.26.0/fonts/otf`
 
 ## Template
 
 ```LilyPond
-\version "2.24.0"
+\version "2.26.0"
 
 \header {
   title = "Track name"
@@ -17,17 +24,10 @@ _TODO:_ Explain how to setup LilyPond in VSCode
   composer = "Bassist name"
 }
 
-#(set-global-staff-size 23)
-
 \paper {
-  indent = 0\mm
-  #(define fonts
-     (set-global-fonts
-      #:music "lv-goldenage"
-      #:roman "GoldenAge"
-      #:sans "GoldenAge"
-      #:factor (/ staff-height pt 20)
-      ))
+  property-defaults.fonts.music = "lv-goldenage"
+  property-defaults.fonts.serif = "GoldenAge"
+  property-defaults.fonts.sans = "GoldenAge"
 }
 
 chord = \chordmode {
@@ -35,7 +35,7 @@ chord = \chordmode {
     }
 
 song = {
-  \relative c, {
+  \relative c {
     \numericTimeSignature
     \time 4/4
     \key c \major
@@ -49,7 +49,8 @@ staff = {
       \chord
     }
     \new Staff {
-      \clef "bass_8"
+      \override Score.SpacingSpanner.spacing-increment = 2.5
+      \clef "bass"
       \song
     }
     \new TabStaff \with {

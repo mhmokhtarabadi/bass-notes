@@ -18,6 +18,8 @@ This is a place to keep my bass notes.
 ```LilyPond
 \version "2.26.0"
 
+\language "english"
+
 \header {
   title = "Track name"
   subtitle = "Bass"
@@ -25,6 +27,7 @@ This is a place to keep my bass notes.
 }
 
 \paper {
+  #(set-paper-size "letter")
   indent = 0\mm
   property-defaults.fonts.music = "lv-goldenage"
   property-defaults.fonts.serif = "GoldenAge"
@@ -32,38 +35,30 @@ This is a place to keep my bass notes.
 }
 
 chord = \chordmode {
-      f1 |
-    }
+  s1 | c  |
+}
 
-song = {
-  \relative c, {
-    \numericTimeSignature
-    \time 4/4
-    \key c \major
-    a4 a a a |
+song = \relative {
+  % \override Score.SpacingSpanner.spacing-increment = 1.2
+  \clef bass
+  \key c \major
+  \numericTimeSignature
+  \time 4/4
+  \tempo 4 = 60
+  r2 r2 |
+
+  \section \sectionLabel \markup { \rounded-box "Intro" }
+
+  c4 c c c \bar "|."
+
+ }
+
+<<
+  \new ChordNames {
+    \chord
   }
-}
-
-staff = {
-  \new StaffGroup <<
-    \new ChordNames {
-      \chord
-    }
-    \new Staff {
-      \override Score.SpacingSpanner.spacing-increment = 2.5
-      \clef "bass_8"
-      \song
-    }
-    \new TabStaff \with {
-      stringTunings = #bass-four-string-tuning
-    } {
-      \clef "moderntab"
-      \song
-    }
-  >>
-}
-
-\book {
-  \staff
-}
+  \new Staff {
+    \song
+  }
+>>
 ```

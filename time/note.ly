@@ -61,10 +61,10 @@ chord = \chordmode {
 song = \relative {
   % \override Score.SpacingSpanner.spacing-increment = 1.2
   \clef bass
-  \numericTimeSignature
-  \tempo 4 = 60
-  \time 4/4
   \key fs \minor
+  \numericTimeSignature
+  \time 4/4
+  \tempo 4 = 60
   r2 r2 |  r4 r4 r4 r4 |
 
   \section \sectionLabel \markup { \rounded-box "Intro" }
